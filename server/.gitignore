@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+# block the .env file to git
 .env
 
 # Editor directories and files
