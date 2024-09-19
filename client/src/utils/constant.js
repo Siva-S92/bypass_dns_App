@@ -18,7 +18,7 @@
 // **************************************************************************************
 
 export const API_ENDPOINT = "https://bypass-dns-app.vercel.app/api/user";
-export const BACKEND_MOVIE_API = "http://localhost:8000/proxy/tmdb";
+export const BACKEND_MOVIE_API = "https://bypass-dns-app.vercel.app/proxy/tmdb";
 export const BACKEND_SERVER = "https://bypass-dns-app.vercel.app"
 
 
