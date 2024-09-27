@@ -7,13 +7,14 @@ import { moviesRouter } from "./routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import { resolveDNS } from "./controllers/movies.js";
 import https from "https";
+import serverless from 'serverless-http'
 
 //config the env variables
 dotenv.config();
 
 //server setup
 const app = express();
-const PORT = process.env.PORT || 8000;
+// const PORT = process.env.PORT || 8000;
 
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -32,7 +33,7 @@ databaseConnection();
 
 // Proxy endpoint to forward requests to TMDB
 
-app.get("/", async (req, res) => res.send("Express on vercel with server.js"));
+app.get("/hello", async (req, res) => res.send("Express on lambda with server.js"));
 app.use("/api/user", userRouter);
 app.use("/proxy/tmdb", moviesRouter);
 app.use(
@@ -56,6 +57,8 @@ app.use(
 );
 
 //Listern Server
-app.listen(PORT, () => {
-  console.log("server running on the PORT:", PORT);
-});
+// app.listen(PORT, () => {
+//   console.log("server running on the PORT:", PORT);
+// });
+
+export const handler = serverless(app)
