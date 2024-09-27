@@ -5,7 +5,6 @@ import databaseConnection from "./utils/database.js";
 import { userRouter } from "./routes/userRoute.js";
 import { moviesRouter } from "./routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { resolveDNS } from "./controllers/movies.js";
 import https from "https";
 import serverless from 'serverless-http'
 
@@ -14,7 +13,7 @@ dotenv.config();
 
 //server setup
 const app = express();
-// const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000;
 
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +23,9 @@ app.use(express.json());
 //     credentials: true,
 // }
 // app.options("", cors(cors_options))
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 
 //database Connection
 databaseConnection();
@@ -56,9 +57,9 @@ app.use(
   })
 );
 
-//Listern Server
-// app.listen(PORT, () => {
-//   console.log("server running on the PORT:", PORT);
-// });
+// Listern Server
+app.listen(PORT, () => {
+  console.log("server running on the PORT:", PORT);
+});
 
-export const handler = serverless(app)
+// export const handler = serverless(app)
