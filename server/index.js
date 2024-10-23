@@ -24,7 +24,8 @@ app.use(express.json());
 // }
 // app.options("", cors(cors_options))
 app.use(cors({
-  origin: "*"
+  origin: "*",
+  credentials: true,
 }));
 
 //database Connection
@@ -34,7 +35,9 @@ databaseConnection();
 
 // Proxy endpoint to forward requests to TMDB
 
-app.get("/hello", async (req, res) => res.send("Express on lambda with server.js"));
+app.get("/wish", async (req, res) => {
+  res.send("Hello World")
+})
 app.use("/api/user", userRouter);
 app.use("/proxy/tmdb", moviesRouter);
 app.use(
