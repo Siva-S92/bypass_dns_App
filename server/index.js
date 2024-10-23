@@ -6,7 +6,7 @@ import { userRouter } from "./routes/userRoute.js";
 import { moviesRouter } from "./routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import https from "https";
-import serverless from 'serverless-http'
+// import serverless from 'serverless-http'
 
 //config the env variables
 dotenv.config();
@@ -22,11 +22,7 @@ const cors_options = {
     origin: process.env.CLIENT_URL,
     credentials: true,
 }
-app.options("", cors(cors_options))
-// app.use(cors({
-//   origin: process.env.CLIENT_URL,
-//   credentials: true,
-// }));
+app.use(cors(cors_options))
 
 //database Connection
 databaseConnection();
