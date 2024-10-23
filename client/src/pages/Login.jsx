@@ -34,7 +34,7 @@ function Login() {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
+          // withCredentials: true,
         });
         if (response.data.success) {
           toast.success(`welcome ${response.data.user.fullname}, You ${response.data.message}`, {duration: 2000});
