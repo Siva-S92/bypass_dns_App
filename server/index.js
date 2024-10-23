@@ -18,15 +18,15 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// const cors_options = {
-//     origin: process.env.CLIENT_URL,
-//     credentials: true,
-// }
-// app.options("", cors(cors_options))
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-}));
+const cors_options = {
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+}
+app.options("", cors(cors_options))
+// app.use(cors({
+//   origin: process.env.CLIENT_URL,
+//   credentials: true,
+// }));
 
 //database Connection
 databaseConnection();
