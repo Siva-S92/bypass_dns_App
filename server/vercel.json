@@ -41,5 +41,11 @@
   ],
   "env": {
     "CLIENT_URL": "https://bypass-dns-app-frontend.vercel.app"  
+  },
+  "functions": {
+    "index.js": {
+      "memory": 1024,  
+      "maxDuration": 10  
+    }
   }
 }
