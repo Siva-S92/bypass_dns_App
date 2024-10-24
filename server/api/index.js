@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import databaseConnection from "./utils/database.js";
-import { userRouter } from "./routes/userRoute.js";
-import { moviesRouter } from "./routes/moviesRoute.js";
+import databaseConnection from "../utils/database.js";
+import { userRouter } from "../routes/userRoute.js";
+import { moviesRouter } from "../routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import https from "https";
 // import serverless from 'serverless-http'

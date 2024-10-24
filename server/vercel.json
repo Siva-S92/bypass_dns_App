@@ -1,20 +1,20 @@
 {
   "version": 2,
   "functions": {
-    "server/index.js": {
+    "api/index.js": {
       "memory": 1024,
       "maxDuration": 10
     }
   },
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/server/index.js"
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -30,7 +30,7 @@
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, x-csrf-token"
+          "value": "Content-Type, Authorization"
         },
         {
           "key": "Cache-Control",
@@ -43,3 +43,8 @@
     "CLIENT_URL": "https://bypass-dns-app-frontend.vercel.app"
   }
 }
+
+
+
+
+
