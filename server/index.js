@@ -23,6 +23,7 @@ const cors_options = {
     credentials: true,
 }
 app.options('*', cors(cors_options));
+app.use(cors(cors_options));
 
 
 //database Connection
