@@ -1,51 +1,45 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "index.js",   
-      "use": "@vercel/node"    
+  "functions": {
+    "index.js": {
+      "memory": 1024,
+      "maxDuration": 10
     }
-  ],
+  },
   "rewrites": [
     {
-      "source": "/(.*)",      
-      "destination": "/index.js"  
+      "source": "/(.*)",
+      "destination": "/index.js"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)",   
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://bypass-dns-app-frontend.vercel.app"  
+          "value": "https://bypass-dns-app-frontend.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Credentials",
-          "value": "true"   
+          "value": "true"
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"  
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, x-csrf-token"  
+          "value": "Content-Type, Authorization, x-csrf-token"
         },
         {
           "key": "Cache-Control",
-          "value": "no-store"  
+          "value": "no-store"
         }
       ]
     }
   ],
   "env": {
-    "CLIENT_URL": "https://bypass-dns-app-frontend.vercel.app"  
-  },
-  "functions": {
-    "index.js": {
-      "memory": 1024,  
-      "maxDuration": 10  
-    }
+    "CLIENT_URL": "https://bypass-dns-app-frontend.vercel.app"
   }
 }
