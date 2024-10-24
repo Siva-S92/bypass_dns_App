@@ -71,12 +71,16 @@ app.use(
 );
 
 // Listern Server
-app.listen(PORT, () => {
-  console.log("server running on the PORT:", PORT);
-});
+// app.listen(PORT, () => {
+//   console.log("server running on the PORT:", PORT);
+// });
 
+
+// Export the app as a serverless function
 export default app;
-// export const handler = serverless(app)
+
+
+// export const handler = serverless(app) //this is for aws lambda
 
 
 
