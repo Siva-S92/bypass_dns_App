@@ -38,9 +38,9 @@ export const MovieById = async (req, res) => {
     );
 
     // Send the response back to the React client
-    return res.status(200).json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -64,9 +64,9 @@ export const nowPlayingMoviesUrl = async (req, res) => {
     );
 
     // Send the response back to the React client
-    return res.status(200).json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -90,9 +90,9 @@ export const popularMoviesUrl = async (req, res) => {
     );
 
     // Send the response back to the React client
-    return res.status(200).json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -116,9 +116,9 @@ export const topRatedMoviesUrl = async (req, res) => {
     );
 
     // Send the response back to the React client
-    return res.status(200).json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -142,9 +142,9 @@ export const upcomingMoviesUrl = async (req, res) => {
     );
 
     // Send the response back to the React client
-    return res.status(200).json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -168,9 +168,9 @@ export const Search_Movie_URL = async (req, res) => {
         },
       }
     );
-    return res.status(200).json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
