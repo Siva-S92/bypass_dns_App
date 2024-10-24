@@ -18,13 +18,17 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',
+  origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',  // The frontend URL
   credentials: true,
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  allowedHeaders: 'Content-Type, Authorization',
 };
 
 app.use(cors(corsOptions));
-// Make sure to handle OPTIONS preflight requests for CORS
+
+// Handle preflight requests
 app.options('*', cors(corsOptions));
 
 //database Connection
@@ -65,3 +69,11 @@ app.listen(PORT, () => {
 });
 
 // export const handler = serverless(app)
+
+
+
+
+
+
+
+//'https://bypass-dns-app-frontend.vercel.app',
