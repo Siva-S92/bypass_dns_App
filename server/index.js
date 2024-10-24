@@ -29,7 +29,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Handle preflight requests
-app.options('*', cors(corsOptions));
+// Handle preflight requests before your routes
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.sendStatus(200); // HTTP OK
+});
+
 
 //database Connection
 databaseConnection();
