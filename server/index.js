@@ -18,13 +18,14 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const cors_options = {
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-}
-// app.options('*', cors(cors_options));
-app.use(cors(cors_options));
+const corsOptions = {
+  origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',
+  credentials: true,
+};
 
+app.use(cors(corsOptions));
+// Make sure to handle OPTIONS preflight requests for CORS
+app.options('*', cors(corsOptions));
 
 //database Connection
 databaseConnection();
