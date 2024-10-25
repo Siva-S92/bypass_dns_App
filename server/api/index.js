@@ -32,13 +32,21 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
 // Handle preflight requests for all routes in Vercel’s serverless environment
-
+//  Ensure that caching of preflight requests is disabled by setting appropriate headers:
+// Disable CORS caching
 app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Disable caching of preflight requests
   if (req.method === 'OPTIONS') {
-    res.status(200).send('OK');  // Respond with HTTP 200 for OPTIONS requests
-  } else {
-    next();
+    res.header('Cache-Control', 'no-store');
+    return res.status(200).end();
   }
+  
+  next();
 });
 
 
