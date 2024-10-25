@@ -6,6 +6,7 @@ import { userRouter } from "../routes/userRoute.js";
 import { moviesRouter } from "../routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import https from "https";
+import cookieParser from 'cookie-parser';
 // import serverless from 'serverless-http'
 
 //config the env variables
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 // CORS configuration
 const corsOptions = {
@@ -26,6 +28,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
+
 
 // Handle preflight requests for all routes
 app.use(cors(corsOptions));
