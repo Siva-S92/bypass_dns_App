@@ -1,13 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import databaseConnection from "../utils/database.js";
-import { userRouter } from "../routes/userRoute.js";
-import { moviesRouter } from "../routes/moviesRoute.js";
+import databaseConnection from "./utils/database.js";
+import { userRouter } from "./routes/userRoute.js";
+import { moviesRouter } from "./routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import https from "https";
 import cookieParser from 'cookie-parser';
-// import serverless from 'serverless-http'
+
+// import serverless from 'serverless-http' // it is for AWS Lambda
 
 //config the env variables
 dotenv.config();
@@ -19,7 +20,7 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
+
 
 // CORS configuration
 const corsOptions = {
@@ -29,28 +30,11 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-
-// Handle preflight requests for all routes
 app.use(cors(corsOptions));
+// Handle preflight requests for all routes
 app.options('*', cors(corsOptions));
+app.use(cookieParser());
 
-// Handle preflight requests for all routes in Vercel’s serverless environment
-//  Ensure that caching of preflight requests is disabled by setting appropriate headers:
-// Disable CORS caching
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL || '*');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  // Disable caching of preflight requests
-  if (req.method === 'OPTIONS') {
-    res.header('Cache-Control', 'no-store');
-    return res.status(200).end();
-  }
-  
-  next();
-});
 
 
 
@@ -87,13 +71,13 @@ app.use(
 );
 
 // Listern Server
-// app.listen(PORT, () => {
-//   console.log("server running on the PORT:", PORT);
-// });
+app.listen(PORT, () => {
+  console.log("server running on the PORT:", PORT);
+});
 
 
-// Export the app as a serverless function
-export default app;
+
+
 
 
 // export const handler = serverless(app) //this is for aws lambda
