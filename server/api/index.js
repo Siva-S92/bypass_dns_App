@@ -19,23 +19,28 @@ const PORT = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// CORS configuration
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',  // The frontend URL
+  origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',
   credentials: true,
-  methods: 'GET,POST,PUT,DELETE,OPTIONS',
-  allowedHeaders: 'Content-Type, Authorization',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
+// Handle preflight requests for all routes
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
-// Handle preflight requests
-// Handle preflight requests before your routes
-app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL);
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.sendStatus(200); // HTTP OK
+// Handle preflight requests for all routes in Vercel’s serverless environment
+
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.status(200).send('OK');  // Respond with HTTP 200 for OPTIONS requests
+  } else {
+    next();
+  }
 });
+
 
 
 //database Connection
@@ -88,4 +93,4 @@ export default app;
 
 
 
-//'https://bypass-dns-app-frontend.vercel.app',
+// CLIENT_URL:'https://bypass-dns-app-frontend.vercel.app',
