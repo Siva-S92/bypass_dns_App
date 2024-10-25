@@ -66,8 +66,13 @@ export const Login = async(req, res)=> {
             })
         }
         const token_data = {id: user._id};
-        const token = await jwt.sign(token_data, process.env.SECRET_KEY, {expiresIn: "1d"});
-        res.status(200).cookie("token", token, {httpOnly: true}).json({
+        const token = jwt.sign(token_data, process.env.SECRET_KEY, {expiresIn: "1d"});
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true, // Only send cookie over HTTPS
+            sameSite: 'None' // Required for cross-origin requests
+          });
+        res.status(200).json({
             message: "logged in Successfully",
             success: true,
             user: user,

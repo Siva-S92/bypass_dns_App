@@ -42,14 +42,12 @@ app.use(cookieParser());
 databaseConnection();
 
 //routes
-
-// Proxy endpoint to forward requests to TMDB
-
 app.get("/wish", async (req, res) => {
   res.send("Hello World")
 })
 app.use("/api/user", userRouter);
 app.use("/proxy/tmdb", moviesRouter);
+// Proxy endpoint to forward requests to TMDB
 app.use(
   "/tmdb-images",
   createProxyMiddleware({
