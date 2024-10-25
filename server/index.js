@@ -26,11 +26,12 @@ app.use(express.json());
 const corsOptions = {
   origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
-// Handle preflight requests for all routes
-// app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions)); // Ensure OPTIONS requests are handled
 app.use(cookieParser());
 
 
