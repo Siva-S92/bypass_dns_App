@@ -6,7 +6,7 @@ import { userRouter } from "./routes/userRoute.js";
 import { moviesRouter } from "./routes/moviesRoute.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import https from "https";
-import cookieParser from 'cookie-parser';
+// import cookieParser from 'cookie-parser';
 
 // import serverless from 'serverless-http' // it is for AWS Lambda
 
@@ -20,19 +20,20 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({origin: "*"}))
 
 
 // CORS configuration
-const corsOptions = {
-  origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL || 'https://bypass-dns-app-frontend.vercel.app',
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// };
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Ensure OPTIONS requests are handled
-app.use(cookieParser());
+// app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions)); // Ensure OPTIONS requests are handled
+// app.use(cookieParser());
 
 
 
