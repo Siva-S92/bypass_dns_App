@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({origin: "*"}))
+app.use(cors())
 
 
 // CORS configuration
