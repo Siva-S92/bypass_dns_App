@@ -21,10 +21,10 @@ const PORT = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({origin: "https://bypass-dns-app-frontend.vercel.app"}))
-app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store'); // Prevents caching
-  next();
-});
+// app.use((req, res, next) => {
+//   res.set('Cache-Control', 'no-store'); // Prevents caching
+//   next();
+// });
 
 
 

@@ -30,12 +30,13 @@ function Login() {
       // go to login api call
       try {
         const formData = { email, password };
-        const response = await axios.post(`${API_ENDPOINT}/login`, formData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // withCredentials: true,
-        });
+        const response = await axios.post(`${API_ENDPOINT}/login`, formData)
+        // const response = await axios.post(`${API_ENDPOINT}/login`, formData, {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   withCredentials: true,
+        // });
         if (response.data.success) {
           toast.success(`welcome ${response.data.user.fullname}, You ${response.data.message}`, {duration: 2000});
           dispatch(setUser(response.data.user))
