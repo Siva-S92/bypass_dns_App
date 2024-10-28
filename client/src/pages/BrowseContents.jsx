@@ -27,7 +27,7 @@ function BrowseContents() {
     if (!user) {
       navigate("/");
     }
-  }, []);
+  }, [user]);
   return (
     <>
       <Header />
