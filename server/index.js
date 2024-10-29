@@ -21,11 +21,10 @@ const PORT = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const corsMiddleware = cors({
+app.use(cors({
   origin: 'https://bypass-dns-app-frontend.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-});
-app.use(corsMiddleware())
+}));
+
 // app.use((req, res, next) => {
 //   res.set('Cache-Control', 'no-store'); // Prevents caching
 //   next();
@@ -60,7 +59,7 @@ app.use("/proxy/tmdb", moviesRouter);
 // Proxy endpoint to forward requests to TMDB
 app.use(
   "/tmdb-images",
-  corsMiddleware(createProxyMiddleware({
+  createProxyMiddleware({
     target: "https://image.tmdb.org", // Use the domain, not the IP
     changeOrigin: true, // Change origin to target
     secure: true, // Validate SSL certificates
@@ -76,7 +75,7 @@ app.use(
       res.status(500).send("Proxy error occurred: " + err.message);
     },
     agent: new https.Agent({ rejectUnauthorized: false }), // Disable SSL validation
-  }))
+  })
 );
 
 // Listern Server
