@@ -68,7 +68,7 @@ app.use(
     },
     onProxyReq(proxyReq, req, res) {
       // Set Host header to image.tmdb.org for correct SSL handshake
-      proxyReq.setHeader('Access-Control-Allow-Origin', '*')
+      proxyReq.setHeader("Access-Control-Allow-Origin", "*");
       proxyReq.setHeader("Host", "image.tmdb.org");
     },
     onError(err, req, res) {
