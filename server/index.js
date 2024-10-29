@@ -20,7 +20,12 @@ const PORT = process.env.PORT || 8000;
 //using middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({origin: process.env.CLIENT_URL || "https://bypass-dns-app-frontend.vercel.app"}))
+
+const corsMiddleware = cors({
+  origin: 'https://bypass-dns-app-frontend.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+});
+app.use(corsMiddleware())
 // app.use((req, res, next) => {
 //   res.set('Cache-Control', 'no-store'); // Prevents caching
 //   next();
@@ -55,7 +60,7 @@ app.use("/proxy/tmdb", moviesRouter);
 // Proxy endpoint to forward requests to TMDB
 app.use(
   "/tmdb-images",
-  createProxyMiddleware({
+  corsMiddleware(createProxyMiddleware({
     target: "https://image.tmdb.org", // Use the domain, not the IP
     changeOrigin: true, // Change origin to target
     secure: true, // Validate SSL certificates
@@ -64,13 +69,14 @@ app.use(
     },
     onProxyReq(proxyReq, req, res) {
       // Set Host header to image.tmdb.org for correct SSL handshake
+      proxyReq.setHeader('Access-Control-Allow-Origin', '*')
       proxyReq.setHeader("Host", "image.tmdb.org");
     },
     onError(err, req, res) {
       res.status(500).send("Proxy error occurred: " + err.message);
     },
     agent: new https.Agent({ rejectUnauthorized: false }), // Disable SSL validation
-  })
+  }))
 );
 
 // Listern Server
