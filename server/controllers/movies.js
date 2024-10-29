@@ -30,6 +30,7 @@ export const MovieById = async (req, res) => {
         headers: {
           Origin: "*",
           Host: "api.themoviedb.org", // Override Host header
+          "User-Agent": "Axios", // Custom User-Agent if necessary
           Accept: "application/json",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmQzY2ZiNTE4NmIzMzVkM2M2ZjBlNGZlMDFlMDEzYSIsInN1YiI6IjY1ZjJkNjQxNWE3ODg0MDE2M2Q3NzIyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LsyHrSN_DV6Wmop08mTLDe77izXI26W4Xe6S7oSCC-4",
@@ -56,6 +57,7 @@ export const nowPlayingMoviesUrl = async (req, res) => {
         headers: {
           Origin: "*",
           Host: "api.themoviedb.org", // Override Host header
+          "User-Agent": "Axios", // Custom User-Agent if necessary
           Accept: "application/json",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmQzY2ZiNTE4NmIzMzVkM2M2ZjBlNGZlMDFlMDEzYSIsInN1YiI6IjY1ZjJkNjQxNWE3ODg0MDE2M2Q3NzIyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LsyHrSN_DV6Wmop08mTLDe77izXI26W4Xe6S7oSCC-4",
@@ -82,6 +84,7 @@ export const popularMoviesUrl = async (req, res) => {
         headers: {
           Origin: "*",
           Host: "api.themoviedb.org", // Override Host header
+          "User-Agent": "Axios", // Custom User-Agent if necessary
           Accept: "application/json",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmQzY2ZiNTE4NmIzMzVkM2M2ZjBlNGZlMDFlMDEzYSIsInN1YiI6IjY1ZjJkNjQxNWE3ODg0MDE2M2Q3NzIyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LsyHrSN_DV6Wmop08mTLDe77izXI26W4Xe6S7oSCC-4",
@@ -108,6 +111,7 @@ export const topRatedMoviesUrl = async (req, res) => {
         headers: {
           Origin: "*",
           Host: "api.themoviedb.org", // Override Host header
+          "User-Agent": "Axios", // Custom User-Agent if necessary
           Accept: "application/json",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmQzY2ZiNTE4NmIzMzVkM2M2ZjBlNGZlMDFlMDEzYSIsInN1YiI6IjY1ZjJkNjQxNWE3ODg0MDE2M2Q3NzIyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LsyHrSN_DV6Wmop08mTLDe77izXI26W4Xe6S7oSCC-4",
@@ -134,6 +138,7 @@ export const upcomingMoviesUrl = async (req, res) => {
         headers: {
           Origin: "*",
           Host: "api.themoviedb.org", // Override Host header
+          "User-Agent": "Axios", // Custom User-Agent if necessary
           Accept: "application/json",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmQzY2ZiNTE4NmIzMzVkM2M2ZjBlNGZlMDFlMDEzYSIsInN1YiI6IjY1ZjJkNjQxNWE3ODg0MDE2M2Q3NzIyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LsyHrSN_DV6Wmop08mTLDe77izXI26W4Xe6S7oSCC-4",
@@ -162,6 +167,7 @@ export const Search_Movie_URL = async (req, res) => {
         headers: {
           Origin: "*",
           Host: "api.themoviedb.org", // Override Host header
+          "User-Agent": "Axios", // Custom User-Agent if necessary
           Accept: "application/json",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmQzY2ZiNTE4NmIzMzVkM2M2ZjBlNGZlMDFlMDEzYSIsInN1YiI6IjY1ZjJkNjQxNWE3ODg0MDE2M2Q3NzIyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LsyHrSN_DV6Wmop08mTLDe77izXI26W4Xe6S7oSCC-4",
